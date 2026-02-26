@@ -1,19 +1,39 @@
-//usecase2;
+//usecase5;
+import java.util.Stack;
+
+
 public class PalindromeCheckerApp {
-    public static  void main(String[] args){
-        String input = "madam";   // Hardcoded input
+
+    
+    public static void main(String[] args) {
+
+    
+        String input = "noon";
+
+        
+        Stack<Character> stack = new Stack<>();
+
+        
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        // Assume palindrome initially.
         boolean isPalindrome = true;
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+        // Compare characters by popping from stack.
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        System.out.println("Input text: " + input);
-        System.out.println("Is it a Palindrome? : " + isPalindrome);
-
+        // Display result.
+        if (isPalindrome) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not a Palindrome");
+        }
     }
 }
