@@ -1,42 +1,26 @@
-//usecase8;
-import java.util.LinkedList;
+//usecase9;
 import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input : ");
+        String input = sc.nextLine();
 
-        System.out.print("Enter a string to check if it is a palindrome: ");
-        String input = scanner.nextLine();
+        boolean result = check(input, 0, input.length() - 1);
 
-        input = input.replaceAll("\\s+", "").toLowerCase();
+        System.out.println("Is Palindrome? : " + result);
+    }
 
-        LinkedList<Character> charList = new LinkedList<>();
-
-        for (char ch : input.toCharArray()) {
-            charList.add(ch);
+    private static boolean check(String s, int start, int end) {
+        if (start >= end) {
+            return true;
         }
-
-        boolean isPalindrome = true;
-
-        while (charList.size() > 1) {
-            char first = charList.removeFirst();
-            char last = charList.removeLast();
-
-            if (first != last) {
-                isPalindrome = false;
-                break;
-            }
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
         }
-
-        if (isPalindrome) {
-            System.out.println("The string IS a palindrome.");
-        } else {
-            System.out.println("The string is NOT a palindrome.");
-        }
-
-        scanner.close();
+        return check(s, start + 1, end - 1);
     }
 }
